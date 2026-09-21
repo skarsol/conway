@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="An interactive implementation of Conway's Game of Life."
+    >
+    <title>Conway's Game of Life</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main class="app">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Cellular automaton</p>
+          <h1>Conway's Game of Life</h1>
+          <p class="intro">
+            Paint cells, choose a seed, or generate a random board. Each generation
+            follows the classic B3/S23 rules.
+          </p>
+        </div>
+
+        <dl class="stats" aria-label="Simulation status">
+          <div>
+            <dt>Generation</dt>
+            <dd id="generation">0</dd>
+          </div>
+          <div>
+            <dt>Live cells</dt>
+            <dd id="live">0</dd>
+          </div>
+        </dl>
+      </header>
+
+      <section class="panel controls" aria-label="Simulation controls">
+        <div class="button-row">
+          <button id="play" class="primary" type="button" aria-pressed="false">Play</button>
+          <button id="step" type="button">Step</button>
+          <button id="randomize" type="button">Randomize</button>
+          <button id="clear" type="button">Clear</button>
+        </div>
+
+        <label>
+          Pattern
+          <select id="pattern">
+            <option value="">Choose a seed…</option>
+            <option value="glider">Glider</option>
+            <option value="pulsar">Pulsar</option>
+            <option value="gosper">Gosper glider gun</option>
+          </select>
+        </label>
+
+        <label>
+          <span>Speed <output id="speed-value" for="speed">8 gen/s</output></span>
+          <input id="speed" type="range" min="1" max="30" value="8">
+        </label>
+
+        <label>
+          <span>Random density <output id="density-value" for="density">28%</output></span>
+          <input id="density" type="range" min="5" max="80" value="28">
+        </label>
+
+        <label class="check">
+          <input id="wrap" type="checkbox">
+          Wrap edges
+        </label>
+      </section>
+
+      <section class="board-shell" aria-label="Game board">
+        <canvas
+          id="board"
+          width="1200"
+          height="800"
+          aria-label="60 by 40 Conway's Game of Life grid. Click or drag to paint cells."
+        ></canvas>
+      </section>
+
+      <footer class="help">
+        <p>
+          <strong>Shortcuts:</strong>
+          Space play/pause · N or → step · R randomize · C clear
+        </p>
+        <p>Rules: a cell survives with 2–3 neighbors; a dead cell is born with exactly 3.</p>
+      </footer>
+    </main>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
